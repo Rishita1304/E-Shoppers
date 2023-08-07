@@ -92,7 +92,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>LOGO.</Logo>
+          <Logo>E-SHOPPERS.</Logo>
         </Center>
         <Right>
           <Link to='/register'>
