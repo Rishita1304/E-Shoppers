@@ -53,13 +53,14 @@ const Center = styled.div`
 const Logo = styled.h1`
   font-weight: bolder;
   text-align: center;
-  ${mobile({ fontSize: "24px" })}
+  ${mobile({ fontSize: "13px" , marginLeft: "2px"})}
 `;
 
 const Right = styled.div`
   flex: 1;
   display: flex;
   text-align: center;
+  align-items: center;
   justify-content: flex-end;
   ${mobile({ flex: 2, justifyContent: "center" })}
 `;
@@ -76,10 +77,10 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   
-    const handleLogout = () => {
-        localStorage.removeItem("persist:root");
-        navigate("/login");
-    }
+const handleLogout = () => {
+    localStorage.removeItem("persist:root");
+    navigate("/login");
+ }
 
   return (
     <Container>
