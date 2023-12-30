@@ -4,8 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from "../redux/apiCalls";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   height: 60px;
@@ -73,25 +72,14 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
-const MenuName = styled.div`
-  font-size: 16px;
-  font-weight: 500;
-  margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
-`;
-
 const Navbar = () => {
   const quantity = useSelector(state=>state.cart.quantity);
-  const user = useSelector(state=>state.user.currentUser);
-  console.log(user);
-
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   
 const handleLogout = () => {
-  logOut(dispatch);
-  navigate('/');
+    localStorage.removeItem("persist:root");
+    navigate("/login");
  }
 
   return (
@@ -108,15 +96,12 @@ const handleLogout = () => {
           <Logo>E-SHOPPERS.</Logo>
         </Center>
         <Right>
-          {!user? <>
           <Link to='/register'>
           <MenuItem>REGISTER</MenuItem>
           </Link>
           <Link to='/login'>
-          <MenuItem>LOGIN</MenuItem>
-          </Link></> : <>
-          <MenuName> {user.username}</MenuName>
-          <MenuItem onClick={handleLogout}>LOGOUT</MenuItem>
+          <MenuItem>LOGOUT</MenuItem>
+          </Link>
           <MenuItem>
           <Link to='/cart'>
             <Badge badgeContent={quantity} color="primary">
@@ -124,8 +109,6 @@ const handleLogout = () => {
             </Badge>
           </Link>
           </MenuItem>
-          </>
-          }
         </Right>
       </Wrapper>
     </Container>
