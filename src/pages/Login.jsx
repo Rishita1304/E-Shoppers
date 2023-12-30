@@ -78,8 +78,8 @@ width: 100%;
 `;
 
 const Login = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('abc123')
+  const [password, setPassword] = useState('abc123')
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -88,7 +88,7 @@ const Login = () => {
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, {username, password})
-    navigate('/')
+    // navigate('/')
   }
 
   return (
@@ -96,8 +96,8 @@ const Login = () => {
       <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder="Username" onChange={(e)=>setUsername(e.target.value)}/>
-          <Input placeholder="Password" type='password' onChange={(e)=>setPassword(e.target.value)}/>
+          <Input placeholder="Username" value="abc123" onChange={(e)=>setUsername(e.target.value)}/>
+          <Input placeholder="Password" type='password' value="abc123" onChange={(e)=>setPassword(e.target.value)}/>
           <Link to='/register'>
 
           <Links>Not a User? Create a new account!</Links>
