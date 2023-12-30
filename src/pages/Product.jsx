@@ -7,6 +7,7 @@ import Announcement from "../components/Annoucement";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { productsList } from "../productData";
 import axios from "axios";
 import { publicRequest, userRequest } from "../Request";
 import { addProduct } from "../redux/cartRedux";
@@ -125,24 +126,25 @@ const Product = () => {
   // console.log(location);
   const id = location.pathname.split("/")[2];
 
-  const [product, setProduct] = useState({});
+  const product = productsList.find(item => item._id === parseInt(id, 10));
+  console.log(product);
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const res = await userRequest.get(`/product/find/${id}`);
-        console.log(res.data);
-        setProduct(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getProduct();
-  }, [id]);
+  // useEffect(() => {
+  //   const getProduct = async () => {
+  //     try {
+  //       const res = await userRequest.get(`/product/find/${id}`);
+  //       console.log(res.data);
+  //       setProduct(res.data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getProduct();
+  // }, [id]);
 
   const handleQuantity = (type) =>{
     if(type === 'dec'){

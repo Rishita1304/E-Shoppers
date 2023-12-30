@@ -66,7 +66,7 @@ import { Link } from "react-router-dom";
       transform: scale(1.1);
     }
   `;
-  
+
   const Product = ({ item }) => {
     return (
       <Container>

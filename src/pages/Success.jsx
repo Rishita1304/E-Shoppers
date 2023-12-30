@@ -1,7 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { cartZero } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Success = () => {
+  const dispatch = useDispatch();
+  const cartRe = () =>{
+    dispatch(cartZero());
+  }
   return (
     <div 
     style={{
@@ -45,7 +51,7 @@ const Success = () => {
             color: "white",
             fontWeight: "600",
             cursor: "pointer"
-          }}>
+          }} onClick={cartRe}>
          Continue Shopping
         </button>
           </Link>
