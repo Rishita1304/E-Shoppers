@@ -4,6 +4,7 @@ import { mobile } from '../responsive';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/apiCalls';
 import { Link, useNavigate } from 'react-router-dom';
+import {TailSpin} from 'react-loader-spinner';
 
 const Container = styled.div`
   width: 100vw;
@@ -69,6 +70,13 @@ const Links = styled.a`
 cursor: pointer;
 `;
 
+const Log = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+`;
+
 const Login = () => {
   const [username, setUsername] = useState('abc123')
   const [password, setPassword] = useState('abc123')
@@ -94,7 +102,19 @@ const Login = () => {
 
           <Links>Not a User? Create a new account!</Links>
           </Link>
-          <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
+          <Button onClick={handleClick} disabled={isFetching}>
+            {isFetching? 
+            <Log>
+            <TailSpin
+                visible={true}
+                height="15"
+                width="15"
+                color="white"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+            /></Log>  : "LOGIN"}</Button>
           {error && <Error>Something went wrong</Error>}
         </Form>
       </Wrapper>

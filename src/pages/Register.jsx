@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 import { Link, useNavigate } from "react-router-dom";
 import { publicRequest } from "../Request";
+import {TailSpin} from 'react-loader-spinner';
 
 const Container = styled.div`
   width: 100vw;
@@ -54,6 +55,13 @@ margin: 20px 10px 0 0;
 padding: 10px;
 `;
 
+const Log = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+`;
+
 const Register = () => {
 
 
@@ -61,16 +69,20 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await publicRequest.post("/auth/register", { name,username, email, password, });
       navigate("/login");
+      setLoading(false);
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   };
 
@@ -88,7 +100,18 @@ const Register = () => {
           Already a User? Sign In!
           </Agreement>
           </Link>
-          <Button onClick={handleSubmit}>CREATE</Button>
+          <Button onClick={handleSubmit}>{loading? 
+            <Log>
+            <TailSpin
+                visible={true}
+                height="15"
+                width="15"
+                color="white"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+            /></Log>  : "CREATE"}</Button>
         </Form>
       </Wrapper>
     </Container>
