@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import styled from 'styled-components'
 import { mobile } from '../responsive';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/apiCalls';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import {TailSpin} from 'react-loader-spinner';
 
 const Container = styled.div`
@@ -80,7 +80,6 @@ width: 100%;
 const Login = () => {
   const [username, setUsername] = useState('abc123')
   const [password, setPassword] = useState('abc123')
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const {isFetching, error} = useSelector(state=> state.user)

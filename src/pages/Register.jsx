@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 import {Link, useNavigate } from "react-router-dom";
 import { publicRequest } from "../Request";
-import {TailSpin} from 'react-loader-spinner';
 
 const Container = styled.div`
   width: 100vw;
@@ -63,7 +62,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [setLoading] = useState(false);
   const navigate = useNavigate();
 
 
